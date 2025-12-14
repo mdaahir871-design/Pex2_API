@@ -1,19 +1,20 @@
 const express = require('express');
-
-const Router = require('.API/V1/src/Router/');
-
-const app = express();
 const cors = require('cors');
 
-// Middleware setup
+const caseRoutesV1 = require('./V1.0/Routes/Pex2_Router');
+const caseRoutesV11 = require('./V1.1/Routes/Pex2_Router');
+
+const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(cors());
 
-// Use the Router for handling routes
-app.use('/api', Router);
+// Routes
+app.use('/api/v1.0/cases', caseRoutesV1);
+app.use('/api/v1.1/cases', caseRoutesV11);
 
-app.use('/api/v1/Router', Router);
-// Start the server
+// Server
 app.listen(3002, () => {
     console.log('Server is running on port 3002');
 });
